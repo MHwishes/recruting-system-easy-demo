@@ -19,7 +19,7 @@ services:
   back_end:
     image: jetty:9.3
     volumes:
-      - ../back_end/build/libs:/var/lib/jetty/webapps
+      - ./back_end/build/libs:/var/lib/jetty/webapps
     ports:
       - "8080:8080"
     networks:
@@ -62,7 +62,7 @@ services:
       - "8888:80"
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d
-      - ../web/public/assets:/var/twars/web
+      - ./web/public/assets:/var/twars/web
     networks:
       main:
         aliases:
