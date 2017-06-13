@@ -46,7 +46,7 @@ services:
         aliases:
           - mongo
   jenkins-dind:
-    image: jenkins:1.625.3
+    image: jenkins:latest
     ports:
       - "8088:8080"
     volumes:
