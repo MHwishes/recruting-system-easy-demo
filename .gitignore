@@ -1,1 +1,5 @@
 .idea/
+/web/node_modules
+/web/public/assets
+npm-debug.log
+/bff/node_modules
