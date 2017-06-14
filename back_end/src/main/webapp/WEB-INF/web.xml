@@ -7,11 +7,11 @@
          version='2.5'>
 
     <servlet>
-        <servlet-name>jersey-serlvet</servlet-name>
+        <servlet-paperName>jersey-serlvet</servlet-paperName>
         <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
 
         <init-param>
-            <param-name>javax.ws.rs.Application</param-name>
+            <param-paperName>javax.ws.rs.Application</param-paperName>
             <param-value>com.tw.rs.App</param-value>
         </init-param>
 
@@ -20,7 +20,7 @@
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>jersey-serlvet</servlet-name>
+        <servlet-paperName>jersey-serlvet</servlet-paperName>
         <url-pattern>/*</url-pattern>
     </servlet-mapping>
 
