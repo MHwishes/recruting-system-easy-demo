@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 public class Paper {
     private int id;
     private String paperName;
-    private List<Section> sections;
+//    private List<Section> sections;
     private String description;
     private Integer createTime;
 
@@ -20,9 +20,9 @@ public class Paper {
         return id;
     }
 
-    public List<Section> getSections() {
-        return sections;
-    }
+//    public List<Section> getSections() {
+//        return sections;
+//    }
 
     public String getPaperName(){
         return paperName;
@@ -43,9 +43,9 @@ public class Paper {
         this.paperName = paperName;
     }
 
-    public void setSections(List<Section> sections) {
-        this.sections = sections;
-    }
+//    public void setSections(List<Section> sections) {
+//        this.sections = sections;
+//    }
 
     public void setId(int id) {
         this.id = id;

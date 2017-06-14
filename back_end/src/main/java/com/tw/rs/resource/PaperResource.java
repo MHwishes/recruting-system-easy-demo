@@ -3,8 +3,9 @@ package com.tw.rs.resource;
 import com.tw.rs.bean.Paper;
 import com.tw.rs.mapper.PaperMapper;
 
+import org.apache.ibatis.session.SqlSession;
 import javax.inject.Inject;
-import javax.ws.rs.GET;
+import javax.ws.rs.*;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -15,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-@Path('/paper')
+@Path("/paper")
 public class PaperResource{
 
     @Inject
@@ -30,10 +31,13 @@ public class PaperResource{
     public Response inserPaper(Map data){
         String paperName=(String)data.get("paperName");
         String description=(String)data.get("description");
-        Integer createTime=(Interger)data.get("createTime");
+        Integer createTime=(Integer)data.get("createTime");
+
+        System.out.print("yuyuyuy");
+        System.out.print(paperName);
 
         Paper paper=new Paper();
-        paper.setPapername(paperName);
+        paper.setPaperName(paperName);
         paper.setDescription(description);
         paper.setCreateTime(createTime);
 
