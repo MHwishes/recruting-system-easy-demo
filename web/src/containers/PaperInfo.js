@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
-import PaperInfo from '../components/PaperInfo.js';
+import PaperInfo from '../components/paper-edit/PaperInfo.js';
 
 const mapStateToProps = (paperInfo) => {
     return {

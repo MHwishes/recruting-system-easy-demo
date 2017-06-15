@@ -1,14 +1,15 @@
 import React, {Component} from 'react';
 import {render} from 'react-dom';
-import '../style/index.less';
-import PaperInfo from '../containers/PaperInfo.js';
-
-import rootReducer from '../reducers/index.js';
 import {createStore, applyMiddleware} from 'redux';
 import {Provider, connect} from 'react-redux';
 import thunkMiddleware from 'redux-thunk';
 import {createLogger} from 'redux-logger';
-import {withRouter} from 'react-router';
+import {Router, Route, browserHistory, IndexRoute, withRouter} from 'react-router';
+
+import  PaperEditor from './paper-edit/index';
+import '../style/index.less';
+import rootReducer from '../reducers/index.js';
+import PaperList from './paper-list/index';
 
 const store = createStore(
     rootReducer,
@@ -19,12 +20,15 @@ const store = createStore(
 export default class Main extends Component {
     render() {
         return (
-            <div id='paper-editor'>
-                <div className='paper-header'>新增试卷</div>
-                <div id='paper-body'>
-                    <PaperInfo/>
-                </div>
-            </div>
+            <Router history={browserHistory}>
+                <Route path={URI_PREFIX+'/web'}>
+                    <IndexRoute component={PaperList}/>
+                    <Route path='paper' component={PaperEditor}/>
+                    {/*<Route path=':id/edit' component={PaperEditor}/>*/}
+                    {/*<Route path='new' component={PaperEditor}/>*/}
+                </Route>
+
+            </Router>
         );
     }
 }
