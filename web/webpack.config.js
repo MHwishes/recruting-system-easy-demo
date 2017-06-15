@@ -4,6 +4,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 var path_prefix = require('config').get('pathPrefix');
+var api_prefix = require('config').get('webApiPrefix');
 
 var config = {
     entry: {
@@ -68,7 +69,7 @@ var config = {
         new webpack.DefinePlugin({
             URI_PREFIX: JSON.stringify(path_prefix),
             // STUDENT_URI_PREFIX: JSON.stringify(path_prefix),
-            // API_PREFIX: JSON.stringify(api_prefix),
+            API_PREFIX: JSON.stringify(api_prefix),
             // DOMAIN: JSON.stringify(domain)
         }),
         new ExtractTextPlugin('[chunkhash:8].[name].css'),
