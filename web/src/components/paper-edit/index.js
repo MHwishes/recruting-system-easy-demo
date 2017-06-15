@@ -1,6 +1,7 @@
 import PaperInfo from '../../containers/PaperInfo.js';
 import PaperSubmit from '../../containers/PaperSubmit.js';
 import LogicPuzzle from '../../containers/LogicPuzzle.js';
+import '../../style/paper-editor.less';
 
 import React, {Component} from 'react';
 
