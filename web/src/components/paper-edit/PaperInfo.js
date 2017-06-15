@@ -15,6 +15,17 @@ export default class PaperInfo extends Component {
         this.description.value = this.props.description || '';
     }
 
+    receivePropsData() {
+        this.name.value = this.props.name || '';
+        this.description.value = this.props.description || '';
+    }
+
+    componentDidMount() {
+        this.receivePropsData();
+
+    }
+
+
     render() {
         return (
             <div id='paper-info'>

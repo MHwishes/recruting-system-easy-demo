@@ -2,15 +2,15 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
 import PaperSubmit from '../components/paper-edit/PaperSubmit';
 
-const mapStateToProps = ({paperInfo}) => {
+const mapStateToProps = (paperInfo) => {
     return {data: paperInfo};
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        // initPaperData: (data) => {
-        //     dispatch({type: 'INIT_PAPER_DATA', data});
-        // },
+        initPaperData: (data) => {
+            dispatch({type: 'INIT_PAPER_DATA', data});
+        }
         // addPaperId: (data) => {
         //     dispatch({type: 'EDIT_PAPER', data});
         // }

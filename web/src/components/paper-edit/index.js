@@ -1,7 +1,8 @@
 import PaperInfo from '../../containers/PaperInfo.js';
-import PaperSubmit from './PaperSubmit';
+import PaperSubmit from '../../containers/PaperSubmit.js';
+import LogicPuzzle from '../../containers/LogicPuzzle.js';
+
 import React, {Component} from 'react';
-import {render} from 'react-dom';
 
 export default class Main extends Component {
     render() {
@@ -10,6 +11,7 @@ export default class Main extends Component {
                 <div className='paper-header'>新增试卷</div>
                 <div id='paper-body'>
                     <PaperInfo/>
+                    <LogicPuzzle/>
                     <PaperSubmit/>
                 </div>
             </div>

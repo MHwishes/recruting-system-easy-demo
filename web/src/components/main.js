@@ -25,7 +25,7 @@ export default class Main extends Component {
                     <IndexRoute component={PaperList}/>
                     <Route path='paper' component={PaperEditor}/>
                     {/*<Route path=':id/edit' component={PaperEditor}/>*/}
-                    {/*<Route path='new' component={PaperEditor}/>*/}
+                    <Route path='new' component={PaperEditor}/>
                 </Route>
 
             </Router>
