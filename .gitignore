@@ -3,3 +3,4 @@
 /web/public/assets
 npm-debug.log
 /bff/node_modules
+/back_end/build/

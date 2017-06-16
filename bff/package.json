@@ -8,6 +8,7 @@
     "body-parser": "^1.17.2",
     "config": "^1.26.1",
     "express": "^4.15.3",
+    "inherits": "^2.0.3",
     "install": "^0.10.1",
     "mongoose": "^4.10.6",
     "router": "^1.3.1",
@@ -15,7 +16,9 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "refreshMongo": "babel-node  ./tool/mongo-tool.js",
+    "ut": "mocha --recursive spec/unit/"
   },
   "author": "",
   "license": "ISC"
