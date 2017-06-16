@@ -4,3 +4,4 @@
 npm-debug.log
 /bff/node_modules
 /back_end/build/
+/back_end/.gradle/
