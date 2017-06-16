@@ -16,38 +16,66 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-@Path("/paper")
+@Path("/papers")
 public class PaperResource{
 
     @Inject
     private PaperMapper paperMapper;
 
-    @Inject
-    private SqlSession session;
-
-    @POST
+    @GET
     @Produces(MediaType.APPLICATION_JSON)
+    public Response getAllPapers() {
 
-    public Response inserPaper(Map data){
-        String paperName=(String)data.get("paperName");
-        String description=(String)data.get("description");
-        Integer createTime=(Integer)data.get("createTime");
+        List<Paper> papers = paperMapper.getAllPapers();
 
-        System.out.print("yuyuyuy");
-        System.out.print(paperName);
+        if (null == papers) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
 
-        Paper paper=new Paper();
-        paper.setPaperName(paperName);
-        paper.setDescription(description);
-        paper.setCreateTime(createTime);
 
-        paperMapper.insertPaper(paper);
-        session.commit();
+        List<Map> result = papers
+                .stream()
+                .map(paper -> {
 
-        Map result = new HashMap();
-        result.put("paperUri", "papers/" + paper.getId());
+                    Map<String, Object> map = new HashMap<>();
+                    map.put("id", paper.getId());
+                    map.put("name", paper.getName());
+                    map.put("description", paper.getDescription());
 
-        return Response.status(Response.Status.CREATED).entity(result).build();
+                    return map;
+                })
+                .collect(Collectors.toList());
+
+        return Response.status(Response.Status.OK).entity(result).build();
     }
+
+
+//    @Inject
+//    private SqlSession session;
+//
+//    @POST
+//    @Produces(MediaType.APPLICATION_JSON)
+//
+//    public Response inserPaper(Map data){
+//        String paperName=(String)data.get("paperName");
+//        String description=(String)data.get("description");
+//        Integer createTime=(Integer)data.get("createTime");
+//
+//        System.out.print("yuyuyuy");
+//        System.out.print(paperName);
+//
+//        Paper paper=new Paper();
+//        paper.setPaperName(paperName);
+//        paper.setDescription(description);
+//        paper.setCreateTime(createTime);
+//
+//        paperMapper.insertPaper(paper);
+//        session.commit();
+//
+//        Map result = new HashMap();
+//        result.put("paperUri", "papers/" + paper.getId());
+//
+//        return Response.status(Response.Status.CREATED).entity(result).build();
+//    }
 
 }

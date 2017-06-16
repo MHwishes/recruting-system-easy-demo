@@ -4,10 +4,12 @@ import com.tw.rs.bean.Paper;
 import java.util.List;
 
 public interface PaperMapper {
-//    List<Paper> findAll();
+
+    List<Paper> getAllPapers();
+
 //    Item findItemById(Integer id);
 //
-   Integer insertPaper(Paper paper);
+//   Integer insertPaper(Paper paper);
 
 //    Integer updateItem(Item item);
 //

@@ -7,4 +7,4 @@
 #!/bin/bash
 
 # connect to mysql as root user of mysql and execute sql script
-docker exec -i recrutingsystemeasydemo_mysql_1 mysql -u mahong -pmahong < database/data_initial.sql
+docker exec -i recrutingsystemeasydemo_mysql_1 mysql -u mahong -pmahong < database/paper_initial.sql

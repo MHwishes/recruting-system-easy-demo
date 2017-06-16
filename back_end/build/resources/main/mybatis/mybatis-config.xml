@@ -8,15 +8,16 @@
         <environment id="default">
             <transactionManager type="JDBC"/>
             <dataSource type="UNPOOLED">
-                <property paperName="driver" value="com.mysql.jdbc.Driver"/>
-                <property paperName="url" value="${jdbc.url}"/>
-                <property paperName="username" value="${jdbc.user}"/>
-                <property paperName="password" value="${jdbc.password}"/>
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.user}"/>
+                <property name="password" value="${jdbc.password}"/>
             </dataSource>
         </environment>
     </environments>
 
     <mappers>
         <mapper resource="mybatis/UserMapper.xml"/>
+        <mapper resource="mybatis/PaperMapper.xml"/>
     </mappers>
 </configuration>
