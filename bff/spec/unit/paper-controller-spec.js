@@ -1,19 +1,13 @@
 require('should');
+const supertest = require('supertest');
 
 const express = require('express');
-const app = require('../../app').app;
-const server=require('../../app').server;
-// const request = supertest(app);
-const request = require('supertest').agent(server);
+const app = require('../../app');
+const request = supertest(app);
 
 const Paper = require('../../model/paper');
 
 describe('PaperContronller', () => {
-
-    after(function (done) {
-        server.close();
-        done();
-    });
 
     it('POST /items should return uri', (done) => {
         const paper = {

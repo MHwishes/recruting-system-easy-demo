@@ -28,16 +28,9 @@ app.use(bodyParser.json());
 
 router(app);
 
-var server = app.listen(3000, function () {
-    var host = server.address().address;
-    var port = server.address().port;
-
-    console.log('Example app listening at http://%s:%s', host, port);
+app.listen(config.get('httpPort'), ()=> {
+    console.log('server started at http://localhost:' + config.get('httpPort'));   // eslint-disable-line no-console
 });
 
-
-module.exports = {
-    server : server,
-    app : app
-};
+module.exports=app;
 
