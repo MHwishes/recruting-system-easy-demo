@@ -21,7 +21,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Path("/papers")
-public class PaperResource{
+public class PaperResource {
 
     @Inject
     private PaperMapper paperMapper;
@@ -65,32 +65,21 @@ public class PaperResource{
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
 
-    public Response insertPaper(Map data){
+    public Response insertPaper(Map data) {
 
         System.out.print(data);
 
-        String name=(String)data.get("name");
-        String description=(String)data.get("description");
-        List<Map> sections=(List<Map>)data.get("sections");
+        String name = (String) data.get("name");
+        String description = (String) data.get("description");
+        List<Map> sections = (List<Map>) data.get("sections");
 
-        Paper paper=new Paper();
+        Paper paper = new Paper();
         paper.setName(name);
         paper.setDescription(description);
 
         paperMapper.insertPaper(paper);
-
-        for(Map section:sections){
-          if(section.get("type").equals("logicPuzzle")){
-
-              String type=(String) section.get("type");
-              Integer paperId=paper.getId();
-
-              Section logicSection=new Section();
-              logicSection.setPaperId(paperId);
-              logicSection.setType(type);
-
-              sectionMapper.insertSection(logicSection);
-          }
+        if(sections!=null) {
+            insertTableSections(sections, paper.getId());
         }
 
         session.commit();
@@ -99,6 +88,22 @@ public class PaperResource{
         result.put("paperUri", "papers/" + paper.getId());
 
         return Response.status(Response.Status.CREATED).entity(result).build();
+    }
+
+    public void insertTableSections(List<Map> sections, int paperId) {
+
+        for (Map section : sections) {
+            if (section.get("type").equals("logicPuzzle")) {
+
+                String type = (String) section.get("type");
+
+                Section logicSection = new Section();
+                logicSection.setPaperId(paperId);
+                logicSection.setType(type);
+
+                sectionMapper.insertSection(logicSection);
+            }
+        }
     }
 
 }
