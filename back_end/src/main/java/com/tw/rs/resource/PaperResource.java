@@ -2,11 +2,13 @@ package com.tw.rs.resource;
 
 import com.tw.rs.bean.Paper;
 import com.tw.rs.bean.Section;
+import com.tw.rs.bean.Definitions;
+
+import com.tw.rs.mapper.DefinitionsMapper;
 import com.tw.rs.mapper.PaperMapper;
 import com.tw.rs.mapper.SectionMapper;
 
 import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionManager;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -27,6 +29,8 @@ public class PaperResource {
     private PaperMapper paperMapper;
     @Inject
     private SectionMapper sectionMapper;
+    @Inject
+    private DefinitionsMapper definitionsMapper;
 
 
     @GET
@@ -96,14 +100,29 @@ public class PaperResource {
             if (section.get("type").equals("logicPuzzle")) {
 
                 String type = (String) section.get("type");
+                Map definitions=(Map) section.get("definitions");
 
                 Section logicSection = new Section();
                 logicSection.setPaperId(paperId);
                 logicSection.setType(type);
-
                 sectionMapper.insertSection(logicSection);
+                insetTableDefinitions(definitions,logicSection.getId());
             }
         }
+    }
+
+    public void insetTableDefinitions(Map definitions,int sectionId){
+        int hard=(Integer)definitions.get("hard");
+        int normal=(Integer)definitions.get("normal");
+        int easy=(Integer)definitions.get("easy");
+
+        Definitions logicDefinitions=new Definitions();
+        logicDefinitions.setEasy(easy);
+        logicDefinitions.setHard(hard);
+        logicDefinitions.setNormal(normal);
+        logicDefinitions.setSectionId(sectionId);
+
+        definitionsMapper.insertDefinitions(logicDefinitions);
     }
 
 }
