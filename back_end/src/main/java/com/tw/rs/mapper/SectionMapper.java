@@ -7,5 +7,4 @@ public interface SectionMapper {
     Integer deleteSectionByPaperId(Integer id);
     Integer selectIdByPaperId(Integer id);
     Integer updateSectionByPaperId(Section section);
-
 }

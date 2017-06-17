@@ -12,5 +12,9 @@
         delete from definitions where sectionId = #{sectionId};
     </delete>
 
+    <update id="updateDefinitions" parameterType="com.tw.rs.bean.Definitions">
+        update definitions set hard = #{hard},normal= #{normal},easy= #{easy} where sectionId = #{sectionId};
+    </update>
+
 
 </mapper>

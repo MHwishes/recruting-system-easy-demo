@@ -154,7 +154,7 @@ public class PaperResource {
         Paper paper = new Paper();
         paper.setName(name);
         paper.setDescription(description);
-        paper.setId(id);
+//        paper.setId(id);
 
         paperMapper.updatePaper(paper);
         updateTableSections(sections,id);
@@ -176,9 +176,30 @@ public class PaperResource {
                 logicSection.setType(type);
                 sectionMapper.updateSectionByPaperId(logicSection);
 
-//                insetTableDefinitions(definitions, logicSection.getId());
+                System.out.print(sectionMapper.selectIdByPaperId(paperId));
+
+                if(sectionMapper.selectIdByPaperId(paperId)!=null){
+
+                updateTableDefinitions(definitions, sectionMapper.selectIdByPaperId(paperId));
+                }
             }
         }
     }
+
+    private void updateTableDefinitions(Map definitions, int sectionId) {
+        int hard = (Integer) definitions.get("hard");
+        int normal = (Integer) definitions.get("normal");
+        int easy = (Integer) definitions.get("easy");
+
+        Definitions logicDefinitions = new Definitions();
+        logicDefinitions.setEasy(easy);
+        logicDefinitions.setHard(hard);
+        logicDefinitions.setNormal(normal);
+        logicDefinitions.setSectionId(sectionId);
+
+        definitionsMapper.updateDefinitions(logicDefinitions);
+
+    }
+
 
 }
