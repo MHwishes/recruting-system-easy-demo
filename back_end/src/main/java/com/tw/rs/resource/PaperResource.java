@@ -4,6 +4,8 @@ import com.tw.rs.bean.Paper;
 import com.tw.rs.mapper.PaperMapper;
 
 import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionManager;
+
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.Path;
@@ -21,6 +23,7 @@ public class PaperResource{
 
     @Inject
     private PaperMapper paperMapper;
+
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -50,32 +53,31 @@ public class PaperResource{
     }
 
 
-//    @Inject
-//    private SqlSession session;
-//
-//    @POST
-//    @Produces(MediaType.APPLICATION_JSON)
-//
-//    public Response inserPaper(Map data){
-//        String paperName=(String)data.get("paperName");
-//        String description=(String)data.get("description");
-//        Integer createTime=(Integer)data.get("createTime");
-//
-//        System.out.print("yuyuyuy");
-//        System.out.print(paperName);
-//
-//        Paper paper=new Paper();
-//        paper.setPaperName(paperName);
-//        paper.setDescription(description);
-//        paper.setCreateTime(createTime);
-//
-//        paperMapper.insertPaper(paper);
-//        session.commit();
-//
-//        Map result = new HashMap();
-//        result.put("paperUri", "papers/" + paper.getId());
-//
-//        return Response.status(Response.Status.CREATED).entity(result).build();
-//    }
+    @Inject
+    private SqlSession session;
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+
+    public Response insertPaper(Map data){
+
+        System.out.print(data);
+
+        String name=(String)data.get("name");
+        String description=(String)data.get("description");
+
+        Paper paper=new Paper();
+        paper.setName(name);
+        paper.setDescription(description);
+
+        paperMapper.insertPaper(paper);
+        session.commit();
+
+        Map result = new HashMap();
+        result.put("paperUri", "papers/" + paper.getId());
+
+        return Response.status(Response.Status.CREATED).entity(result).build();
+    }
 
 }

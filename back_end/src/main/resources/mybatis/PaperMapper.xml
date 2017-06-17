@@ -8,4 +8,10 @@
         select * from papers
     </select>
 
+    <insert id="insertPaper" parameterType="com.tw.rs.bean.Paper" useGeneratedKeys="true" keyProperty="id">
+        insert into papers(name,description) values(#{name},#{description});
+    </insert>
+
+
+
 </mapper>

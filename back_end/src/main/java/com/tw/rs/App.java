@@ -7,6 +7,7 @@ import com.tw.rs.bean.Paper;
 import com.tw.rs.mapper.PaperMapper;
 import com.tw.rs.mapper.UserMapper;
 import com.tw.rs.util.DBUtil;
+import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionManager;
 import org.glassfish.hk2.utilities.binding.AbstractBinder;
 import org.glassfish.jersey.server.ResourceConfig;
@@ -17,7 +18,7 @@ import javax.ws.rs.ApplicationPath;
 public class App extends ResourceConfig {
 
     public App() {
-        SqlSessionManager session = DBUtil.getSession();
+        final SqlSession session = DBUtil.getSession();
         final UserMapper userMapper = session.getMapper(UserMapper.class);
         final PaperMapper paperMapper = session.getMapper(PaperMapper.class);
 
@@ -27,9 +28,9 @@ public class App extends ResourceConfig {
                     @Override
                     protected void configure() {
                         bind(userMapper).to(UserMapper.class);
+                        bind(session).to(SqlSession.class);
                         bind(paperMapper).to(PaperMapper.class);
                     }
                 });
-
     }
 }

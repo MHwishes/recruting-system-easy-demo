@@ -9,12 +9,11 @@ public interface PaperMapper {
 
 //    Item findItemById(Integer id);
 //
-//   Integer insertPaper(Paper paper);
+   Integer insertPaper(Paper paper);
 
 //    Integer updateItem(Item item);
 //
 //    Integer deleteItemById(Integer id);
 
-//    List<Item> findItemByCategoryId(Integer categoryId);
 
 }
