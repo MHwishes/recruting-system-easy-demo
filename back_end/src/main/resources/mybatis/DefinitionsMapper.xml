@@ -16,5 +16,9 @@
         update definitions set hard = #{hard},normal= #{normal},easy= #{easy} where sectionId = #{sectionId};
     </update>
 
+    <select id="getDefinitionsBySectionId" resultType="com.tw.rs.bean.Definitions">
+        select * from definitions where sectionId = #{sectionId}
+    </select>
+
 
 </mapper>
