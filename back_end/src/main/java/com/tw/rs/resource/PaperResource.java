@@ -71,7 +71,6 @@ public class PaperResource {
 
     public Response insertPaper(Map data) {
 
-        System.out.print(data);
 
         String name = (String) data.get("name");
         String description = (String) data.get("description");
@@ -138,6 +137,26 @@ public class PaperResource {
         if(sectionId!=null) {
             definitionsMapper.deleteDefinitionsBySectionId(sectionId);
         }
+        session.commit();
+
+        return Response.status(Response.Status.NO_CONTENT).build();
+    }
+
+    @PUT
+    @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response updatePaper(Map data, @PathParam("id") Integer id) {
+
+        String name = (String) data.get("name");
+        String description = (String) data.get("description");
+        List<Map> sections = (List<Map>) data.get("sections");
+
+        Paper paper = new Paper();
+        paper.setName(name);
+        paper.setDescription(description);
+        paper.setId(id);
+
+        paperMapper.updatePaper(paper);
         session.commit();
 
         return Response.status(Response.Status.NO_CONTENT).build();

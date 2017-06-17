@@ -16,6 +16,10 @@
         delete from papers where id = #{id};
     </delete>
 
+    <update id="updatePaper" parameterType="com.tw.rs.bean.Paper">
+        update papers set name = #{name},description = #{description} where id = #{id};
+    </update>
+
 
 
 </mapper>

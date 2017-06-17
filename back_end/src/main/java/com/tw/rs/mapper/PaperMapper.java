@@ -10,8 +10,7 @@ public interface PaperMapper {
 //    Item findItemById(Integer id);
 //
    Integer insertPaper(Paper paper);
-
-//    Integer updateItem(Item item);
+   Integer updatePaper(Paper paper);
 //
   Integer deletePaperById(Integer id);
 
