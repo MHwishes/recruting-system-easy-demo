@@ -16,6 +16,8 @@
         select *  from sections where paperId = #{paperId};
     </select>
 
-
+    <update id="updateSectionByPaperId" parameterType="com.tw.rs.bean.Section">
+        update papers set type = #{type} where paperId = #{paperId};
+    </update>
 
 </mapper>

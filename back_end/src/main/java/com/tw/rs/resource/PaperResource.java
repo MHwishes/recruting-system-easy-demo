@@ -157,9 +157,28 @@ public class PaperResource {
         paper.setId(id);
 
         paperMapper.updatePaper(paper);
+        updateTableSections(sections,id);
         session.commit();
 
         return Response.status(Response.Status.NO_CONTENT).build();
+    }
+
+    public void updateTableSections(List<Map> sections, int paperId){
+
+        for (Map section : sections) {
+            if (section.get("type").equals("logicPuzzle")) {
+
+                String type = (String) section.get("type");
+                Map definitions = (Map) section.get("definitions");
+
+                Section logicSection = new Section();
+                logicSection.setPaperId(paperId);
+                logicSection.setType(type);
+                sectionMapper.updateSectionByPaperId(logicSection);
+
+//                insetTableDefinitions(definitions, logicSection.getId());
+            }
+        }
     }
 
 }
