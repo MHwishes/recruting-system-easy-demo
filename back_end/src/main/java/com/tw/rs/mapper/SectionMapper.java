@@ -1,0 +1,8 @@
+package com.tw.rs.mapper;
+import com.tw.rs.bean.Section;
+
+public interface SectionMapper {
+
+    Integer insertSection(Section section);
+
+}

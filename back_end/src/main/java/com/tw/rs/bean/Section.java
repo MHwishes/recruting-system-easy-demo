@@ -20,15 +20,15 @@ public class Section {
         return type;
     }
 
-    public void setId() {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public void setPaperId() {
+    public void setPaperId(int paperId) {
         this.paperId = paperId;
     }
 
-    public void setType() {
+    public void setType(String type) {
         this.type = type;
     }
 

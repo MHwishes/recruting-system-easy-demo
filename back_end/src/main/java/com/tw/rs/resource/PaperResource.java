@@ -1,7 +1,9 @@
 package com.tw.rs.resource;
 
 import com.tw.rs.bean.Paper;
+import com.tw.rs.bean.Section;
 import com.tw.rs.mapper.PaperMapper;
+import com.tw.rs.mapper.SectionMapper;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionManager;
@@ -23,6 +25,8 @@ public class PaperResource{
 
     @Inject
     private PaperMapper paperMapper;
+    @Inject
+    private SectionMapper sectionMapper;
 
 
     @GET
@@ -56,6 +60,7 @@ public class PaperResource{
     @Inject
     private SqlSession session;
 
+
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -66,12 +71,28 @@ public class PaperResource{
 
         String name=(String)data.get("name");
         String description=(String)data.get("description");
+        List<Map> sections=(List<Map>)data.get("sections");
 
         Paper paper=new Paper();
         paper.setName(name);
         paper.setDescription(description);
 
         paperMapper.insertPaper(paper);
+
+        for(Map section:sections){
+          if(section.get("type").equals("logicPuzzle")){
+
+              String type=(String) section.get("type");
+              Integer paperId=paper.getId();
+
+              Section logicSection=new Section();
+              logicSection.setPaperId(paperId);
+              logicSection.setType(type);
+
+              sectionMapper.insertSection(logicSection);
+          }
+        }
+
         session.commit();
 
         Map result = new HashMap();

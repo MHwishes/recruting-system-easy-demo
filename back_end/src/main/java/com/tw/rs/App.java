@@ -6,6 +6,7 @@ package com.tw.rs;
 import com.tw.rs.bean.Paper;
 import com.tw.rs.mapper.PaperMapper;
 import com.tw.rs.mapper.UserMapper;
+import com.tw.rs.mapper.SectionMapper;
 import com.tw.rs.util.DBUtil;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionManager;
@@ -21,6 +22,8 @@ public class App extends ResourceConfig {
         final SqlSession session = DBUtil.getSession();
         final UserMapper userMapper = session.getMapper(UserMapper.class);
         final PaperMapper paperMapper = session.getMapper(PaperMapper.class);
+        final SectionMapper sectionMapper = session.getMapper(SectionMapper.class);
+
 
 
         packages("com.tw.rs.resource")
@@ -30,6 +33,7 @@ public class App extends ResourceConfig {
                         bind(userMapper).to(UserMapper.class);
                         bind(session).to(SqlSession.class);
                         bind(paperMapper).to(PaperMapper.class);
+                        bind(sectionMapper).to(SectionMapper.class);
                     }
                 });
     }

@@ -19,5 +19,6 @@
     <mappers>
         <mapper resource="mybatis/UserMapper.xml"/>
         <mapper resource="mybatis/PaperMapper.xml"/>
+        <mapper resource="mybatis/SectionMapper.xml"/>
     </mappers>
 </configuration>
