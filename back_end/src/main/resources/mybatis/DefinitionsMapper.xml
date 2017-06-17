@@ -8,5 +8,9 @@
         insert into definitions(sectionId,hard,normal,easy) values(#{sectionId},#{hard},#{normal},#{easy});
     </insert>
 
+    <delete id="deleteDefinitionsBySectionId" parameterType="java.lang.Integer">
+        delete from sections where sectionId = #{sectionId};
+    </delete>
+
 
 </mapper>

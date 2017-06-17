@@ -12,6 +12,10 @@
         insert into papers(name,description) values(#{name},#{description});
     </insert>
 
+    <delete id="deletePaperById" parameterType="java.lang.Integer">
+        delete from papers where id = #{id};
+    </delete>
+
 
 
 </mapper>

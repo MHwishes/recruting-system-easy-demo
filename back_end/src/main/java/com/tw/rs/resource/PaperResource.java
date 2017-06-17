@@ -82,7 +82,7 @@ public class PaperResource {
         paper.setDescription(description);
 
         paperMapper.insertPaper(paper);
-        if(sections!=null) {
+        if (sections != null) {
             insertTableSections(sections, paper.getId());
         }
 
@@ -100,29 +100,47 @@ public class PaperResource {
             if (section.get("type").equals("logicPuzzle")) {
 
                 String type = (String) section.get("type");
-                Map definitions=(Map) section.get("definitions");
+                Map definitions = (Map) section.get("definitions");
 
                 Section logicSection = new Section();
                 logicSection.setPaperId(paperId);
                 logicSection.setType(type);
                 sectionMapper.insertSection(logicSection);
-                insetTableDefinitions(definitions,logicSection.getId());
+                insetTableDefinitions(definitions, logicSection.getId());
             }
         }
     }
 
-    public void insetTableDefinitions(Map definitions,int sectionId){
-        int hard=(Integer)definitions.get("hard");
-        int normal=(Integer)definitions.get("normal");
-        int easy=(Integer)definitions.get("easy");
+    public void insetTableDefinitions(Map definitions, int sectionId) {
+        int hard = (Integer) definitions.get("hard");
+        int normal = (Integer) definitions.get("normal");
+        int easy = (Integer) definitions.get("easy");
 
-        Definitions logicDefinitions=new Definitions();
+        Definitions logicDefinitions = new Definitions();
         logicDefinitions.setEasy(easy);
         logicDefinitions.setHard(hard);
         logicDefinitions.setNormal(normal);
         logicDefinitions.setSectionId(sectionId);
 
         definitionsMapper.insertDefinitions(logicDefinitions);
+    }
+
+
+    @DELETE
+    @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+
+    public Response deletePaperById(@PathParam("id") Integer id) {
+
+        paperMapper.deletePaperById(id);
+        Integer sectionId=sectionMapper.selectIdByPaperId(id);
+        sectionMapper.deleteSectionByPaperId(id);
+        if(sectionId!=null) {
+            definitionsMapper.deleteDefinitionsBySectionId(sectionId);
+        }
+        session.commit();
+
+        return Response.status(Response.Status.NO_CONTENT).build();
     }
 
 }

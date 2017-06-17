@@ -8,5 +8,14 @@
         insert into sections(paperId,type) values(#{paperId},#{type});
     </insert>
 
+    <delete id="deleteSectionByPaperId" parameterType="java.lang.Integer">
+        delete from sections where paperId = #{paperId};
+    </delete>
+
+    <select id="selectIdByPaperId" resultType="java.lang.Integer">
+        select *  from sections where paperId = #{paperId};
+    </select>
+
+
 
 </mapper>

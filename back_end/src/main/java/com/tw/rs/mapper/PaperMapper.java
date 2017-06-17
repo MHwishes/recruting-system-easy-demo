@@ -13,7 +13,7 @@ public interface PaperMapper {
 
 //    Integer updateItem(Item item);
 //
-//    Integer deleteItemById(Integer id);
+  Integer deletePaperById(Integer id);
 
 
 }
