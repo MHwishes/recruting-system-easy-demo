@@ -9,7 +9,7 @@
     </insert>
 
     <delete id="deleteDefinitionsBySectionId" parameterType="java.lang.Integer">
-        delete from sections where sectionId = #{sectionId};
+        delete from definitions where sectionId = #{sectionId};
     </delete>
 
 
