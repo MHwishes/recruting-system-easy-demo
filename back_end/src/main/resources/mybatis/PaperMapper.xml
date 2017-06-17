@@ -20,6 +20,10 @@
         update papers set name = #{name},description = #{description} where id = #{id};
     </update>
 
+    <select id="getPaperById" resultType="com.tw.rs.bean.Paper">
+        select * from papers where id = #{id}
+    </select>
+
 
 
 </mapper>

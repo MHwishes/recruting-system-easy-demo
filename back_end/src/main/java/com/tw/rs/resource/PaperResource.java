@@ -61,6 +61,27 @@ public class PaperResource {
     }
 
 
+    @GET
+    @Path("/{param}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getPaperById(
+            @PathParam("param") int id) {
+
+        Paper paper = paperMapper.getPaperById(id);
+
+        if (paper == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("id", paper.getId());
+        map.put("name", paper.getName());
+        map.put("description", paper.getDescription());
+
+        return Response.status(Response.Status.OK).entity(map).build();
+    }
+
+
     @Inject
     private SqlSession session;
 
