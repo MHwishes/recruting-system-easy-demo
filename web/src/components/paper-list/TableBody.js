@@ -65,7 +65,7 @@ class PaperForm extends Component {
             }
         ];
 
-        const paperList = this.props.paperList.papers || [];
+        const paperList = this.props.paperList || [];
         let paperHTML = paperList.map(({name, description, _id}, index) => {
 
             return (

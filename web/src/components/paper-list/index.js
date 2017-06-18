@@ -13,7 +13,7 @@ export default class Main extends Component {
         this.state = {
             paperListTitle: '试卷列表',
             operationButton: false,
-            paperList: {},
+            paperList: [],
             showModal: false,
             toDeletePapers: [],
             deleteIds: [],
@@ -22,9 +22,10 @@ export default class Main extends Component {
 
     componentDidMount(){
         superagent
-            .get(API_PREFIX + '/paper-definitions')
+            .get(API_PREFIX + '/papers')
             .end((err, res) => {
                 if (err) {
+
                     throw (err);
                 } else {
                     this.setState({paperList: res.body});

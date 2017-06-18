@@ -5,6 +5,7 @@ const constant = require('../config/constant');
 
 class PaperController {
     getAll(req, res, next){
+        console.log("hahahhah");
         async.series({
             papers: (done) => {
                 Paper.find({})
