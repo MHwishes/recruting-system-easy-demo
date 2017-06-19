@@ -23,8 +23,7 @@ class ApiServiceController {
 
     deletePaper(req, res, next) {
         const id = req.params.id;
-        console.log(id, "yuyuyuooooooooooo")
-        console.log(apiService + `/papers/${id}`);
+
         request
             .delete(apiService + `/papers/${id}`)
             .set('Accept', 'application/json')
@@ -32,8 +31,22 @@ class ApiServiceController {
                 if (err) {
                     throw (err);
                 } else {
-                    console.log("yryryryry");
                     return res.sendStatus(constant.httpCode.NO_CONTENT);
+                }
+            })
+    }
+
+    savePaper(req, res, next) {
+        console.log(req.body);
+        request
+            .post(apiService + '/papers')
+            .send(req.body)
+            .set('Accept', 'application/json')
+            .end((err, request) => {
+                if (err) {
+                    throw (err);
+                } else {
+                return res.sendStatus(constant.httpCode.CREATED);
                 }
             })
     }
