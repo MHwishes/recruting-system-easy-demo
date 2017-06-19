@@ -78,7 +78,7 @@ class ApiServiceController {
                                         } else {
                                             const definitions = docDefinition.body;
                                             let logicPaper = Object.assign({}, paper);
-                                            logicPaper.sections=[];
+                                            logicPaper.sections = [];
                                             logicPaper.sections.push({
                                                 type: 'logicPuzzle',
                                                 definitions: {
@@ -93,6 +93,22 @@ class ApiServiceController {
                             }
                         })
 
+                }
+            })
+
+    }
+
+    updateOnePaper(req, res, next) {
+        const id=req.params.id;
+        request
+            .put(apiService + `/papers/${id}`)
+            .send(req.body)
+            .set('Accept', 'application/json')
+            .end((err, doc) => {
+                if (err) {
+                    throw (err);
+                } else {
+                    return res.sendStatus(constant.httpCode.NO_CONTENT)
                 }
             })
 
