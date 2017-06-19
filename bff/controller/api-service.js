@@ -1,7 +1,7 @@
 const async = require('async');
 const constant = require('../config/constant');
 const request = require('superagent');
-var config = require('config');
+const config = require('config');
 const apiService = config.get('back_endApiService');
 
 class ApiServiceController {
@@ -46,7 +46,7 @@ class ApiServiceController {
                 if (err) {
                     throw (err);
                 } else {
-                return res.sendStatus(constant.httpCode.CREATED);
+                    return res.sendStatus(constant.httpCode.CREATED);
                 }
             })
     }

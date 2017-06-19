@@ -51,7 +51,7 @@ export default class PaperSubmit extends Component {
                     // this.props.addPaperId({_id: res.body.paperId, isSaved: true, hasUnsavedChanges: false});
                     // this.props.router.push(URI_PREFIX + `/papers/${res.body.paperId}/edit`);
                     // this.setState({isSpinnerSave: false, isHidden: false, saveOrRelease: '保存'});
-                    
+
                     this.setState({isHidden: false, saveOrRelease: '发布'});
                 } else {
                     throw err;
