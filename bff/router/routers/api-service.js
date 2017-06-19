@@ -7,6 +7,7 @@ const apiService = new ApiService();
 router.get('/', apiService.getAllPapers);
 router.delete('/:id',apiService.deletePaper);
 router.post('/',apiService.savePaper);
+router.get('/:id',apiService.getOnePaper);
 
 
 module.exports = router;
