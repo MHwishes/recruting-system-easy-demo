@@ -29,17 +29,32 @@ export default class PaperSubmit extends Component {
     }
 
     release() {
-        request
-            .post(API_PREFIX + '/papers')
-            .set('Content-Type', 'application/json')
-            .send(this.props.data)
-            .end((err, res) => {
-                if (res.statusCode === constant.httpCode.CREATED) {
-                    this.setState({isHidden: false, saveOrRelease: '发布'});
-                } else {
-                    throw err;
-                }
-            });
+        const id = this.props.data.id;
+        if (id) {
+            request
+                .put(API_PREFIX + `/papers/${id}`)
+                .set('Content-Type', 'application/json')
+                .send(this.props.data)
+                .end((err, res) => {
+                    if (res.statusCode === constant.httpCode.NO_CONTENT) {
+                        this.setState({isHidden: false, saveOrRelease: '发布'});
+                    } else {
+                        throw err;
+                    }
+                });
+        } else {
+            request
+                .post(API_PREFIX + '/papers')
+                .set('Content-Type', 'application/json')
+                .send(this.props.data)
+                .end((err, res) => {
+                    if (res.statusCode === constant.httpCode.CREATED) {
+                        this.setState({isHidden: false, saveOrRelease: '发布'});
+                    } else {
+                        throw err;
+                    }
+                });
+        }
     }
 
     goToLists() {
@@ -65,7 +80,7 @@ export default class PaperSubmit extends Component {
         const isCreate = this.props.data.id ? '修改' : '新建';
         return (
             <div id='paper-submit' className='row'>
-                <div className='col-xs-6 text-right'>
+                <div className={this.props.data.id ? 'hidden' : 'col-xs-6 text-right'}>
                     <button className=' btn btn-primary ' onClick={this.save.bind(this)}>保存</button>
                 </div>
 
