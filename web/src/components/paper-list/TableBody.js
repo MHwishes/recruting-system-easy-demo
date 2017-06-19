@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import {Link} from 'react-router';
 import {Modal, Button} from 'react-bootstrap';
+import constant from '../../../config/constant';
 import superagent from 'superagent';
 
 class PaperForm extends Component {
@@ -8,12 +9,25 @@ class PaperForm extends Component {
         super(props);
         this.state = {
             showModal:false,
-            deleteId:null
+            deleteId:null,
+            paperList: [],
         };
     }
 
+    componentDidMount(){
+        superagent
+            .get(API_PREFIX + '/papers')
+            .end((err, res) => {
+                if (err) {
+
+                    throw (err);
+                } else {
+                    this.setState({paperList: res.body});
+                }
+            });
+    }
+
     deletePaper(id) {
-        console.log(id,"yuyuyu");
         this.setState({
             showModal:true,
             deleteId:id
@@ -27,18 +41,26 @@ class PaperForm extends Component {
     }
 
     confirmButton(){
-        console.log(this.state.deleteId,"eeeeeeeeeeeeeee")
         superagent
-            .delete(API_PREFIX + '/papers')
+            .delete(API_PREFIX + `/papers/${this.state.deleteId}`)
             .end((err, res) => {
                 if (err) {
-
                     throw (err);
                 } else {
-                    // this.setState({paperList: res.body});
+                    if(res.status===constant.httpCode.NO_CONTENT){
+                        superagent
+                            .get(API_PREFIX + '/papers')
+                            .end((err, res) => {
+                                if (err) {
+                                    throw (err);
+                                } else {
+                                    this.setState({paperList: res.body,showModal:false});
+                                }
+                            });
+
+                    }
                 }
             });
-
     }
 
     render() {
@@ -52,7 +74,7 @@ class PaperForm extends Component {
             }
         ];
 
-        const paperList = this.props.paperList || [];
+        const paperList = this.state.paperList || [];
         let paperHTML = paperList.map(({name, description, id}, index) => {
 
             return (
