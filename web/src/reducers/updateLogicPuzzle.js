@@ -8,7 +8,7 @@ const updateLogicPuzzle = (data, newDate)=> {
         }
     }
     let newSection = newDate.quizzes ? {
-        definition: newDate.quizzes,
+        definitions: newDate.quizzes,
         type: 'logicPuzzle'
     } : undefined;
 

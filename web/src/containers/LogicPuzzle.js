@@ -13,12 +13,12 @@ function getQuizzes(paperInfo) {
     let logicQuizzes = paperInfo.sections.filter((item)=> {
             return item.type === 'logicPuzzle'
         })[0] || {};
-    return logicQuizzes.definition || {};
+    return logicQuizzes.definitions || {};
 }
 
 const mapStateToProps = (paperInfo)=>({
     toggleStatus: getToggle(paperInfo),
-    definition: getQuizzes(paperInfo)
+    definitions: getQuizzes(paperInfo)
 
 });
 

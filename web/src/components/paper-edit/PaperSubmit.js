@@ -41,6 +41,23 @@ export default class PaperSubmit extends Component {
             });
 
     }
+    release(){
+        request
+            .post(API_PREFIX + '/papers')
+            .set('Content-Type', 'application/json')
+            .send(this.props.data)
+            .end((err, res) => {
+                if (res.statusCode === constant.httpCode.CREATED) {
+                    // this.props.addPaperId({_id: res.body.paperId, isSaved: true, hasUnsavedChanges: false});
+                    // this.props.router.push(URI_PREFIX + `/papers/${res.body.paperId}/edit`);
+                    // this.setState({isSpinnerSave: false, isHidden: false, saveOrRelease: '保存'});
+                    
+                    this.setState({isHidden: false, saveOrRelease: '发布'});
+                } else {
+                    throw err;
+                }
+            });
+    }
 
     goToLists(){
         this.props.router.push(URI_PREFIX + '/web');
@@ -57,7 +74,7 @@ export default class PaperSubmit extends Component {
                 </div>
 
                 <div className='col-xs-6 text-left'>
-                    <button className=' btn btn-primary '>发布</button>
+                    <button className=' btn btn-primary ' onClick={this.release.bind(this)}>发布</button>
                 </div>
 
 

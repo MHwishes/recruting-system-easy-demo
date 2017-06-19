@@ -18,9 +18,9 @@ export default class LogicPuzzle extends Component {
 
     componentDidUpdate() {
         this.inputInfo.checked = this.props.toggleStatus;
-        this.easy.value = this.props.definition.easy || '';
-        this.normal.value = this.props.definition.normal || '';
-        this.hard.value = this.props.definition.hard || '';
+        this.easy.value = this.props.definitions.easy || '';
+        this.normal.value = this.props.definitions.normal || '';
+        this.hard.value = this.props.definitions.hard || '';
     }
 
 
