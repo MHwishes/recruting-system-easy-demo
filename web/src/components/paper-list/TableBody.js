@@ -84,7 +84,7 @@ class PaperForm extends Component {
 
                     <td>
                         <div className='action-buttons'>
-                            <Link className='green'>
+                            <Link className='green' to={URI_PREFIX + `/web/${id}/paperedit`}>
                                 <i className={'fa fa-pencil bigger pencil-green'}> </i>
                             </Link>
                             <Link className='red' onClick={this.deletePaper.bind(this, id)}>

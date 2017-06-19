@@ -22,7 +22,7 @@ export default class Main extends Component {
             <Router history={browserHistory}>
                 <Route path={URI_PREFIX+'/web'}>
                     <IndexRoute component={PaperList}/>
-                    <Route path='paper' component={PaperEditor}/>
+                    <Route path=':id/paperedit' component={PaperEditor}/>
                     {/*<Route path=':id/edit' component={PaperEditor}/>*/}
                     <Route path='new' component={PaperEditor}/>
                 </Route>
