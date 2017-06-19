@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {Modal, Button} from 'react-bootstrap';
 import superagent from 'superagent';
 
 import TableHeader from './TableHeader';
@@ -12,11 +11,11 @@ export default class Main extends Component {
         super(props);
         this.state = {
             paperListTitle: '试卷列表',
-            operationButton: false,
+            // operationButton: false,
             paperList: [],
-            showModal: false,
-            toDeletePapers: [],
-            deleteIds: [],
+            // showModal: false,
+            // toDeletePapers: [],
+            // deleteIds: [],
         };
     }
 
@@ -32,16 +31,12 @@ export default class Main extends Component {
                 }
             });
     }
-    cancelButton(){
 
-    }
 
-    confirmButton(){
 
-    }
-    deletePaper(){
-
-    }
+    // deletePaper(){
+    //
+    // }
 
     render() {
         return (
@@ -49,31 +44,8 @@ export default class Main extends Component {
                 <TableHeader paperListTitle={this.state.paperListTitle}/>
 
                 <div>
-                    <TableBody paperList={this.state.paperList} onDeletePaper={this.deletePaper.bind(this)}
-                               ref={(ref) => {
-                                   this.paperForm = ref;
-                               }}/>
+                    <TableBody paperList={this.state.paperList}/>
 
-                    <div className={this.state.showModal ? '' : 'hidden'}>
-                        <div className='static-modal'>
-
-                            <Modal.Dialog>
-                                <Modal.Header>
-                                    <Modal.Title>删除提示</Modal.Title>
-                                </Modal.Header>
-
-                                <Modal.Body>
-                                    您确定要删除此试卷吗？
-                                </Modal.Body>
-
-                                <Modal.Footer>
-                                    <Button onClick={this.cancelButton.bind(this)}>取消</Button>
-                                    <Button bsStyle='primary' onClick={this.confirmButton.bind(this)}>确定</Button>
-                                </Modal.Footer>
-
-                            </Modal.Dialog>
-                        </div>
-                    </div>
                 </div>
             </div>
         );

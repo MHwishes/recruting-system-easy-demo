@@ -1,56 +1,43 @@
 import React,{Component} from 'react';
 import {Link} from 'react-router';
+import {Modal, Button} from 'react-bootstrap';
+import superagent from 'superagent';
 
 class PaperForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectAll: false,
-            selectBox: []
+            showModal:false,
+            deleteId:null
         };
     }
 
-    getSelectedIds() {
-        return this.props.paperList.data.filter((item, key) => {
-            return this.state.selectBox[key];
-        }).map(item => item._id);
-    }
-
-    onSelectAll() {
-        // let selectAll = !this.state.selectAll;
-        // let selectBox = this.props.paperList.data.map(item => selectAll);
-        // this.setState({
-        //     selectAll,
-        //     selectBox
-        // }, () => {
-        //     this.props.onIdChange(this.getSelectedIds());
-        // });
-    }
-
-    onCheckbox(index) {
-        // let selectBox = this.props.paperList.data.map((item, idx) => this.state.selectBox[idx]);
-        // selectBox[index] = !selectBox[index];
-        // let selectAll = selectBox.every((item) => item);
-        // this.setState({
-        //     selectBox,
-        //     selectAll
-        // }, () => {
-        //     this.props.onIdChange(this.getSelectedIds());
-        // });
-    }
-
     deletePaper(id) {
-        // this.props.onDeletePaper(id);
-    }
-
-    clearCheckbox() {
+        console.log(id,"yuyuyu");
         this.setState({
-            selectBox: [],
-            selectAll: false
-        });
+            showModal:true,
+            deleteId:id
+        })
     }
 
-    handleChange(sort, order) {
+    cancelButton(){
+        this.setState({
+            showModal:false
+        })
+    }
+
+    confirmButton(){
+        console.log(this.state.deleteId,"eeeeeeeeeeeeeee")
+        superagent
+            .delete(API_PREFIX + '/papers')
+            .end((err, res) => {
+                if (err) {
+
+                    throw (err);
+                } else {
+                    // this.setState({paperList: res.body});
+                }
+            });
 
     }
 
@@ -66,14 +53,10 @@ class PaperForm extends Component {
         ];
 
         const paperList = this.props.paperList || [];
-        let paperHTML = paperList.map(({name, description, _id}, index) => {
+        let paperHTML = paperList.map(({name, description, id}, index) => {
 
             return (
                 <tr key={index}>
-                    <th scope='row'>
-                        <input type='checkbox' checked={this.state.selectBox[index] || false}
-                               onClick={this.onCheckbox.bind(this, index)}/>
-                    </th>
                     <td> {name} </td>
                     <td>{description}</td>
 
@@ -82,7 +65,7 @@ class PaperForm extends Component {
                             <Link className='green'>
                                 <i className={'fa fa-pencil bigger pencil-green'}> </i>
                             </Link>
-                            <Link className='red' onClick={this.deletePaper.bind(this, _id)}>
+                            <Link className='red' onClick={this.deletePaper.bind(this, id)}>
                                 <i className='fa fa-trash-o bigger'> </i>
                             </Link>
                         </div>
@@ -98,9 +81,6 @@ class PaperForm extends Component {
                     <table className='table table-striped table-bordered table-hover'>
                         <thead>
                         <tr>
-                            <th><input type='checkbox' checked={this.props.checked}
-                                       onClick={this.props.onChange}/>
-                            </th>
                             {
                                 fields.map(({name}, index) => {
                                     return (
@@ -114,6 +94,26 @@ class PaperForm extends Component {
                         {paperHTML}
                         </tbody>
                     </table>
+                </div>
+                <div className={this.state.showModal ? '' : 'hidden'}>
+                    <div className='static-modal'>
+
+                        <Modal.Dialog>
+                            <Modal.Header>
+                                <Modal.Title>删除提示</Modal.Title>
+                            </Modal.Header>
+
+                            <Modal.Body>
+                                您确定要删除此试卷吗？
+                            </Modal.Body>
+
+                            <Modal.Footer>
+                                <Button onClick={this.cancelButton.bind(this)}>取消</Button>
+                                <Button bsStyle='primary' onClick={this.confirmButton.bind(this)}>确定</Button>
+                            </Modal.Footer>
+
+                        </Modal.Dialog>
+                    </div>
                 </div>
             </div>
         );
