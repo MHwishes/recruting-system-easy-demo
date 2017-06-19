@@ -6,6 +6,11 @@ import '../../style/paper-editor.less';
 import React, {Component} from 'react';
 
 export default class Main extends Component {
+
+    componentWillUnmount() {
+        this.props.initPaperData({name:'',description:'',sections: []});
+    }
+
     render() {
         return (
             <div id='paper-editor'>

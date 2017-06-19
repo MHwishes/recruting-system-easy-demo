@@ -6,7 +6,7 @@ import thunkMiddleware from 'redux-thunk';
 import {createLogger} from 'redux-logger';
 import {Router, Route, browserHistory, IndexRoute, withRouter} from 'react-router';
 
-import  PaperEditor from './paper-edit/index';
+import  PaperEditor from '../containers/PaperEditor';
 import rootReducer from '../reducers/index.js';
 import PaperList from './paper-list/index';
 

@@ -1,4 +1,4 @@
-// import initPaperData from './initPaperData';
+import initPaperData from './initPaper';
 import editPaper from './editPaper';
 import updateLogicPuzzle from './updateLogicPuzzle';
 // import editSectionName from './editSectionName';
@@ -6,8 +6,8 @@ import updateLogicPuzzle from './updateLogicPuzzle';
 // import deleteHomeworkQuiz from './deleteHomeworkQuiz';
 // import addSection from './addSection';
 
- const actionMap = {
-    // 'INIT_PAPER_DATA': initPaperData,
+const actionMap = {
+    'INIT_PAPER_DATA': initPaperData,
     'EDIT_PAPER': editPaper,
     'UPDATE_LOGIC_PUZZLE': updateLogicPuzzle,
     // 'EDIT_SECTION_NAME': editSectionName,
@@ -17,7 +17,7 @@ import updateLogicPuzzle from './updateLogicPuzzle';
 };
 
 
-function rootReducer(state = {sections: []}, action) {
+function rootReducer(state = {name: '', description: '', sections: []}, action) {
     const func = actionMap[action.type];
     if (!func) {
         return state;
