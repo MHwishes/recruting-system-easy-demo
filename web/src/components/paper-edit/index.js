@@ -17,7 +17,7 @@ export default class Main extends Component {
                     if (err) {
                         throw (err)
                     } else {
-                      this.props.initPaperData(res.body);
+                        this.props.initPaperData(res.body);
                     }
                 })
         }
