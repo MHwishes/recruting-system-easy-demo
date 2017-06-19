@@ -22,7 +22,6 @@ export default class PaperInfo extends Component {
 
     componentDidMount() {
         this.receivePropsData();
-
     }
 
 
