@@ -9,13 +9,14 @@ pipeline {
 			}
 
 		}
-		stage('test')
+		stage('test'){
 		  agent {docker 'jetty' }
 		        {mysql '5.7'}
 		  steps{
 		    sh './db-initial.sh'
             sh './gradlew test'
 		   }
+		  }
 
 
 		stage('deploy')
