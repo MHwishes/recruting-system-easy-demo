@@ -10,9 +10,12 @@ pipeline {
 
 		}
 		stage('test'){
-		  agent {docker 'jetty' }
-		        {mysql '5.7'}
+#		  agent {docker 'jetty' }
+#		        {mysql '5.7'}
 		  steps{
+            sh 'docker ps'
+            sh 'docker-compose up -d'
+            sh 'docker ps'
 		    sh './db-initial.sh'
             sh './gradlew test'
 		   }
