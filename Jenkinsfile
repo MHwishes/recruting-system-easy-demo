@@ -1,5 +1,5 @@
 pipeline {
-	agent { docker 'node:6.9.5' , docker 'jetty', mysql '5.7'}
+	agent { docker 'node:6.9.5' , docker 'jetty' ,  mysql '5.7'}
 	stages {
 		stage('build') {
 			steps {

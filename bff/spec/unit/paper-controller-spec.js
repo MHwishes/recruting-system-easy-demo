@@ -10,25 +10,35 @@ const Paper = require('../../model/paper');
 
 describe('PaperContronller', () => {
 
-    it('POST /items should return uri', (done) => {
-        const paper = {
-            name: 'java',
-            description: "java paper",
-            sections: [{
-                type: "logicPuzzle",
-                definition: {
-                    hard: 2,
-                    easy: 2,
-                    normal: 1
-                }
-            }]
-        };
+    // it('POST /items should return uri', (done) => {
+    //     const paper = {
+    //         name: 'java',
+    //         description: "java paper",
+    //         sections: [{
+    //             type: "logicPuzzle",
+    //             definition: {
+    //                 hard: 2,
+    //                 easy: 2,
+    //                 normal: 1
+    //             }
+    //         }]
+    //     };
+    //
+    //     request
+    //         .post('/paper-definitions')
+    //         .set('Content-Type', 'application/json')
+    //         .send(paper)
+    //         .expect(201)
+    //         .end(done)
+    // });
 
+    it('GET All papers',(done)=>{
         request
-            .post('/paper-definitions')
-            .send(paper)
-            .expect(201)
+            .get('/paper-definitions')
+            .expect(200)
             .end(done)
-    });
+    })
+
+
 
 });
