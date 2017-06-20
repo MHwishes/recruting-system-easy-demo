@@ -1,4 +1,5 @@
-node {
+pipeline {
+    agent any
 	stages {
 		stage('build') {
 			steps {
@@ -7,14 +8,14 @@ node {
 
 		}
 		stage('test'){
-		  steps{
-            sh 'docker ps'
-            sh 'docker-compose up -d'
-            sh 'docker ps'
-		    sh './db-initial.sh'
-            sh './gradlew test'
-		   }
-		  }
+              steps{
+                sh 'docker ps'
+                sh 'docker-compose up -d'
+                sh 'docker ps'
+                sh './db-initial.sh'
+                sh './gradlew test'
+               }
+		 }
 
 	}
 }
