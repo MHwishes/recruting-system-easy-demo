@@ -10,8 +10,6 @@ pipeline {
 
 		}
 		stage('test'){
-#		  agent {docker 'jetty' }
-#		        {mysql '5.7'}
 		  steps{
             sh 'docker ps'
             sh 'docker-compose up -d'
