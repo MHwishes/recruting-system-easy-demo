@@ -4,9 +4,7 @@ pipeline {
 		stage('build') {
 		    agent {docker 'node:6.9.5'}
 			steps {
-			    sh 'cd bff'
-				sh 'npm i'
-				sh 'npm run ut'
+			    sh 'cd bff && npm i && npm run ut'
 			}
 
 		}
