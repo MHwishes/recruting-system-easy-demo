@@ -1,6 +1,7 @@
 require('should');
 const supertest = require('supertest');
-
+const config = require('config');
+const apiService = config.get('back_endApiService');
 const express = require('express');
 const app = require('../../app');
 const request = supertest(app);
@@ -14,11 +15,11 @@ describe('PaperContronller', () => {
             name: 'java',
             description: "java paper",
             sections: [{
-                type:"logicPuzzle",
-                definition:{
-                    hard:2,
-                    easy:2,
-                    normal:1
+                type: "logicPuzzle",
+                definition: {
+                    hard: 2,
+                    easy: 2,
+                    normal: 1
                 }
             }]
         };
@@ -27,12 +28,7 @@ describe('PaperContronller', () => {
             .post('/paper-definitions')
             .send(paper)
             .expect(201)
-            .expect((res) => {
-                Paper.findOne(paper, (err, doc) => {
-                    res.body.uri.should.equal(`paper/${doc._id}`);
-                })
-            })
-            .end(done);
+            .end(done)
     });
 
 });

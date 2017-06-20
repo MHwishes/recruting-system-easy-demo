@@ -26,8 +26,6 @@ class PaperController {
 
     create(req, res, next) {
         Paper.create(req.body, (err, doc) => {
-            console.log(req.body, "huhuhuhu");
-            console.log(req.body.sections[0], "huhuhuhu");
             if (err) {
                 return next(err);
             } else {
@@ -35,11 +33,11 @@ class PaperController {
                     .post(apiService + '/papers')
                     .send(req.body)
                     .set('Accept', 'application/json')
-                    .end((err, request) => {
+                    .end((err, doc) => {
                         if (err) {
                             throw (err);
                         } else {
-                            return res.sendStatus(constant.httpCode.CREATED);
+                            return res.sendStatus(constant.httpCode.CREATED);                        // return res.status(constant.httpCode.CREATED).send({uri:`paper/${doc.id}`});
                         }
                     });
             }

@@ -8,7 +8,6 @@ const modelMap = {
 
 let docs = Object.keys(rawData);
 
- mogoose.connect('mongodb://mongo/twars');
 module.exports = function refresh(done) {
 
     Object.keys(rawData).forEach((v) => {
@@ -18,7 +17,7 @@ module.exports = function refresh(done) {
                 if (docs.length === 0) {
                     done();
                     // console.log('refreshMongo success')
-                    // process.exit(0);
+                    //  process.exit(0);
                 }
             })
         });

@@ -18,7 +18,7 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "refreshMongo": "babel-node  ./tool/mongo-tool.js",
+    "refreshMongo": "node  ./tool/mongo-tool.js",
     "ut": "mocha --recursive spec/unit/"
   },
   "author": "",

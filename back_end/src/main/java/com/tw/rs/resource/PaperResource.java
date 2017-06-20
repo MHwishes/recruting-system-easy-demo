@@ -196,7 +196,7 @@ public class PaperResource {
                 logicSection.setPaperId(paperId);
                 logicSection.setType(type);
                 sectionMapper.updateSectionByPaperId(logicSection);
-                
+
                 if(sectionMapper.selectIdByPaperId(paperId)!=null){
 
                 updateTableDefinitions(definitions, sectionMapper.selectIdByPaperId(paperId));
