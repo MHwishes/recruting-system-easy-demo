@@ -175,7 +175,7 @@ public class PaperResource {
         Paper paper = new Paper();
         paper.setName(name);
         paper.setDescription(description);
-//        paper.setId(id);
+        paper.setId(id);
 
         paperMapper.updatePaper(paper);
         updateTableSections(sections,id);
@@ -196,9 +196,7 @@ public class PaperResource {
                 logicSection.setPaperId(paperId);
                 logicSection.setType(type);
                 sectionMapper.updateSectionByPaperId(logicSection);
-
-                System.out.print(sectionMapper.selectIdByPaperId(paperId));
-
+                
                 if(sectionMapper.selectIdByPaperId(paperId)!=null){
 
                 updateTableDefinitions(definitions, sectionMapper.selectIdByPaperId(paperId));
