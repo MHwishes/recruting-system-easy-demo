@@ -4,13 +4,14 @@ pipeline {
 		stage('build') {
 		    agent {docker 'node:6.9.5'}
 			steps {
-				sh 'npm --version'
-				sh 'echo "Hello Word!"'
+				sh 'npm i'
+				sh 'npm run ut'
 			}
 
 		}
 		stage('test')
-		  agent {docker 'jetty' },{mysql '5.7'}
+		  agent {docker 'jetty' }
+		        {mysql '5.7'}
 		  steps{
 		    sh './db-initial.sh'
             sh './gradlew test'
