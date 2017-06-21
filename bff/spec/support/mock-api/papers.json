@@ -1,0 +1,30 @@
+[
+  {
+    "description": "should_return_all_paperLists",
+    "request": {
+      "uri": "/allpapers",
+      "method": "get"
+    },
+    "response": {
+      "json": {
+        "papers": [
+          {
+            "name": "java",
+            "description": "java paper",
+            "id": 1
+          },
+          {
+            "name": "react",
+            "description": "react paper",
+            "id": 2
+          },
+          {
+            "name": "js",
+            "description": "js paper",
+            "id": 3
+          }
+        ]
+      }
+    }
+  }
+]

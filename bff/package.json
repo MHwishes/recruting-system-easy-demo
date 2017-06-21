@@ -6,6 +6,7 @@
   "dependencies": {
     "async": "^2.4.1",
     "body-parser": "^1.17.2",
+    "colors": "^1.1.2",
     "config": "^1.26.1",
     "express": "^4.15.3",
     "inherits": "^2.0.3",
@@ -14,13 +15,15 @@
     "mongoose": "^4.10.6",
     "nodemon": "^1.11.0",
     "router": "^1.3.1",
+    "shelljs": "^0.7.8",
     "superagent": "^3.5.2"
   },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "refreshMongo": "node  ./tool/mongo-tool.js",
-    "ut": "mocha --recursive spec/unit/"
+    "ut": "mocha --recursive spec/unit/",
+    "mock-server": "java -jar spec/support/moco-runner-0.10.2-standalone.jar http -p 12306 -g spec/support/back-end.json -s 9527"
   },
   "author": "",
   "license": "ISC"
