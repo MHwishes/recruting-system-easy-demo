@@ -7,7 +7,6 @@ const apiService = config.get('back_endApiService');
 
 class PaperController {
     getAll(req, res, next) {
-        console.log("hahahhah");
         async.series({
             papers: (done) => {
                 Paper.find({})
@@ -37,7 +36,7 @@ class PaperController {
                         if (err) {
                             throw (err);
                         } else {
-                            return res.sendStatus(constant.httpCode.CREATED);                        // return res.status(constant.httpCode.CREATED).send({uri:`paper/${doc.id}`});
+                            return res.sendStatus(constant.httpCode.CREATED);
                         }
                     });
             }
