@@ -1,5 +1,6 @@
 {
   "httpPort": 3000,
   "mongoUri": "mongodb://mongo/twars",
-  "back_endApiService": "http://back_end:8080/back_end"
+  "back_endApiService": "http://back_end:8080/back_end",
+  "testApiService":"localhost:8080/back_end"
 }

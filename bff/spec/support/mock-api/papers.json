@@ -2,7 +2,7 @@
   {
     "description": "should_return_all_paperLists",
     "request": {
-      "uri": "/allpapers",
+      "uri": "/backendPapers",
       "method": "get"
     },
     "response": {
