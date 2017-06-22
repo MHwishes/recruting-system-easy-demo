@@ -1,12 +1,14 @@
 pipeline {
-    agent none
+
+    agent{
+       docker {
+           image 'node:6.9.5'
+           args '-u root'
+        }
+    }
+    
 	stages {
-	     agent {
-                docker {
-                    image 'node'
-                    args '-u root'
-                }
-            }
+
 		stage('build') {
 			steps {
 			    sh 'cd bff && npm i && npm run ut'
