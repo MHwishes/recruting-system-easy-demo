@@ -2,7 +2,10 @@ pipeline {
 
     agent{
        docker {
-           image 'node:6.9.5 , mysql:5.7, mongodb:3.2 ,jetty:9.3 '
+           image 'node:6.9.5'
+           image 'mysql:5.7'
+           image 'mongodb:3.2'
+           image 'jetty:9.3'
            args '-u root'
         }
     }
