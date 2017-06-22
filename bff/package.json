@@ -26,6 +26,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "refreshMongo": "node  ./tool/mongo-tool.js",
     "ut": "mocha --recursive spec/unit/",
+    "it": "mocha --recursive spec/intergration/",
     "mock-server": "java -jar spec/support/moco-runner-0.10.2-standalone.jar http -p 12306 -g spec/support/back-end.json -s 9527"
   },
   "author": "",

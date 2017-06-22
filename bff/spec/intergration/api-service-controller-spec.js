@@ -1,11 +1,11 @@
 require('should');
-const config = require('config');
+const supertest = require('supertest');
 const express = require('express');
 const app = require('../../app');
-const request = require('supertest')(config.get('back_endApiService'));
+const request = supertest(app);
 
 
-describe('api-service', () => {
+describe('PaperContronller', () => {
 
     it('GET All papers from mysql', (done) => {
         request
@@ -14,11 +14,11 @@ describe('api-service', () => {
             .end(done)
     });
 
-    it('POST send papers from mysql', (done) => {
+    it('POST All papers', (done) => {
         request
             .post('/papers')
             .send({
-                "name": "mahong9999999999999999999",
+                "name": "9999999999999999999",
                 "description": "4444888888",
                 "sections": [{
                     "type": "logicPuzzle",
@@ -59,5 +59,6 @@ describe('api-service', () => {
             .expect(204)
             .end(done)
     })
+
 
 });
