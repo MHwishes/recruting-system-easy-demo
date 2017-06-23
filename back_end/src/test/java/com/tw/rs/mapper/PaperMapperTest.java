@@ -1,19 +1,24 @@
 package com.tw.rs.mapper;
 
 import java.io.Reader;
+import java.sql.Connection;
+import java.util.List;
 
+import com.tw.rs.bean.Paper;
+import com.tw.rs.bean.User;
+import com.tw.rs.mapper.PaperMapper;
+import com.tw.rs.util.DBUtil;
 import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.Is.is;
 
-
-public class SectionMapperTest {
+public class PaperMapperTest {
 
     private static SqlSessionFactory sqlSessionFactory;
 
@@ -25,15 +30,15 @@ public class SectionMapperTest {
         reader.close();
     }
 
-    @Test
-    public void should_return_section_by_Id_success() throws Exception {
 
+    @Test
+    public void should_return_Paper_success() throws Exception {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
-        SectionMapper sectionMapper = sqlSession.getMapper(SectionMapper.class);
+        PaperMapper paperMapper = sqlSession.getMapper(PaperMapper.class);
 
-        Integer id = sectionMapper.selectIdByPaperId(1);
-
-        assertThat(id, is(1));
+        List<Paper> papers = paperMapper.getAllPapers();
+        sqlSession.close();
+        Assert.assertEquals(papers.size(), 3);
     }
 }
