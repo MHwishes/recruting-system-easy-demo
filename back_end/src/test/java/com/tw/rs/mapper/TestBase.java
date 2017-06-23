@@ -11,6 +11,7 @@
 //import com.tw.rs.util.DBUtil;
 //import javax.ws.rs.core.Application;
 //
+//import org.junit.Before;
 //import org.junit.BeforeClass;
 //
 //import java.io.Reader;
@@ -18,12 +19,12 @@
 //public class TestBase {
 //    private static SqlSessionFactory sqlSessionFactory;
 //
-//    @BeforeClass
-//      public static void setUp() throws Exception {
-//        // create an SqlSessionFactory
+//    @Before
+//      public void   setUp() throws Exception {
 //        Reader reader = Resources.getResourceAsReader("./mybatis/mybatis-config.xml");
 //        sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
 //        reader.close();
+////      return sqlSessionFactory;
 //
 //        // populate in-memory database
 ////        SqlSession session = sqlSessionFactory.openSession();
