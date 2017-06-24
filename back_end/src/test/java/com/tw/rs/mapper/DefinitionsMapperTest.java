@@ -36,14 +36,14 @@ public class DefinitionsMapperTest {
     @Test
     public void should_return_one_definitions_success() throws Exception {
 
-        Definitions definitions  = definitionsMapper.getDefinitionsBySectionId(1);
+        Definitions definitions = definitionsMapper.getDefinitionsBySectionId(1);
         Assert.assertEquals(definitions.getId(), 1);
     }
 
     @Test
     public void insert_One_definitions_success() throws Exception {
 
-        Definitions definitions=new Definitions();
+        Definitions definitions = new Definitions();
         definitions.setSectionId(1);
         definitions.setNormal(3);
         definitions.setHard(2);
@@ -60,7 +60,7 @@ public class DefinitionsMapperTest {
     @Test
     public void update_One_definitions_success() throws Exception {
 
-        Definitions definitions=new Definitions();
+        Definitions definitions = new Definitions();
         definitions.setSectionId(1);
         definitions.setNormal(3);
         definitions.setHard(2);
@@ -74,8 +74,8 @@ public class DefinitionsMapperTest {
     }
 
     @Test
-    public void delete_one_definitions_success() throws Exception{
-        Integer id=definitionsMapper.deleteDefinitionsBySectionId(3);
+    public void delete_one_definitions_success() throws Exception {
+        Integer id = definitionsMapper.deleteDefinitionsBySectionId(3);
         assertThat(id, is(0));
     }
 
