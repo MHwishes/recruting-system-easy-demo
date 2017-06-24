@@ -24,18 +24,18 @@
 //    @Before
 //      public void   setUp() throws Exception {
 //        Reader reader = Resources.getResourceAsReader("./mybatis/mybatis-config.xml");
-//        sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+//        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
 //        reader.close();
 //
-//        SqlSession session = sqlSessionFactory.openSession();
-//        Connection conn = session.getConnection();
-//        reader = Resources.getResourceAsReader("./database/paper_initial.sql");
-//        ScriptRunner runner = new ScriptRunner(conn);
-//        runner.setLogWriter(null);
-//        runner.runScript(reader);
-//        conn.close();
-//        reader.close();
-//        session.close();
+////        SqlSession session = sqlSessionFactory.openSession();
+////        Connection conn = session.getConnection();
+////        reader = Resources.getResourceAsReader("./database/paper_initial.sql");
+////        ScriptRunner runner = new ScriptRunner(conn);
+////        runner.setLogWriter(null);
+////        runner.runScript(reader);
+////        conn.close();
+////        reader.close();
+////        session.close();
 //    }
 //}
 //

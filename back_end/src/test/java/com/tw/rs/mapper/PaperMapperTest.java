@@ -31,7 +31,6 @@ public class PaperMapperTest {
         Reader reader = Resources.getResourceAsReader("./mybatis/mybatis-config.xml");
         sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
         reader.close();
-
         SqlSession sqlSession = sqlSessionFactory.openSession();
         paperMapper = sqlSession.getMapper(PaperMapper.class);
     }
@@ -42,15 +41,13 @@ public class PaperMapperTest {
 
 
         List<Paper> papers = paperMapper.getAllPapers();
-//        sqlSession.close();
-        Assert.assertEquals(papers.size(), 3);
+        Assert.assertEquals(papers.size(), 4);
     }
 
     @Test
     public void should_return_One_Paper_success() throws Exception {
 
         Paper paper = paperMapper.getPaperById(1);
-//        sqlSession.close();
         Assert.assertEquals(paper.getId(), 1);
     }
 
@@ -62,7 +59,6 @@ public class PaperMapperTest {
         paper.setDescription("description");
 
         paperMapper.insertPaper(paper);
-//        sqlSession.close();
         Assert.assertEquals(paper.getName(), "yu");
         Assert.assertEquals(paper.getDescription(), "description");
     }
@@ -77,18 +73,16 @@ public class PaperMapperTest {
         paper.setId(1);
 
         paperMapper.updatePaper(paper);
-//        sqlSession.close();
         Assert.assertEquals(paper.getId(), 1);
         Assert.assertEquals(paper.getName(), "yu");
         Assert.assertEquals(paper.getDescription(), "description");
     }
 
-//    @Test
-//    public void delete_one_paper_success() throws Exception {
-//        Integer id = paperMapper.deletePaperById(3);
-////        sqlSession.close();
-//        assertThat(id, is(0));
-//    }
-//
+    @Test
+    public void delete_one_paper_success() throws Exception {
+        Integer id = paperMapper.deletePaperById(3);
+        assertThat(id, is(0));
+    }
+
 
 }
