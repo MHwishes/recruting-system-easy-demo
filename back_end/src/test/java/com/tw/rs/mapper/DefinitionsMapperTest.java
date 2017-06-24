@@ -5,8 +5,6 @@ import java.sql.Connection;
 import java.util.List;
 
 import com.tw.rs.bean.Definitions;
-import com.tw.rs.bean.Paper;
-import com.tw.rs.bean.User;
 import com.tw.rs.mapper.DefinitionsMapper;
 import com.tw.rs.util.DBUtil;
 import org.apache.ibatis.io.Resources;
@@ -39,7 +37,6 @@ public class DefinitionsMapperTest {
     public void should_return_one_definitions_success() throws Exception {
 
         Definitions definitions  = definitionsMapper.getDefinitionsBySectionId(1);
-//        sqlSession.close();
         Assert.assertEquals(definitions.getId(), 1);
     }
 
@@ -53,7 +50,6 @@ public class DefinitionsMapperTest {
         definitions.setEasy(4);
 
         definitionsMapper.insertDefinitions(definitions);
-//        sqlSession.close();
         Assert.assertEquals(definitions.getId(), 4);
         Assert.assertEquals(definitions.getSectionId(), 1);
         Assert.assertEquals(definitions.getHard(), 2);
@@ -71,7 +67,6 @@ public class DefinitionsMapperTest {
         definitions.setEasy(9);
 
         definitionsMapper.updateDefinitions(definitions);
-//        sqlSession.close();
         Assert.assertEquals(definitions.getSectionId(), 1);
         Assert.assertEquals(definitions.getHard(), 2);
         Assert.assertEquals(definitions.getEasy(), 9);
@@ -83,6 +78,5 @@ public class DefinitionsMapperTest {
         Integer id=definitionsMapper.deleteDefinitionsBySectionId(3);
         assertThat(id, is(0));
     }
-
 
 }

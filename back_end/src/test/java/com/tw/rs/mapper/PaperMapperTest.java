@@ -5,7 +5,6 @@ import java.sql.Connection;
 import java.util.List;
 
 import com.tw.rs.bean.Paper;
-import com.tw.rs.bean.User;
 import com.tw.rs.mapper.PaperMapper;
 import com.tw.rs.util.DBUtil;
 import org.apache.ibatis.io.Resources;
@@ -38,7 +37,6 @@ public class PaperMapperTest {
 
     @Test
     public void should_return_AllPapers_success() throws Exception {
-
 
         List<Paper> papers = paperMapper.getAllPapers();
         Assert.assertEquals(papers.size(), 4);

@@ -32,7 +32,6 @@ public class SectionMapperTest {
         reader.close();
 
         sqlSession = sqlSessionFactory.openSession();
-//        session.close();
 
          sectionMapper = sqlSession.getMapper(SectionMapper.class);
 
@@ -40,19 +39,14 @@ public class SectionMapperTest {
 
     @Test
     public void should_return_section_by_Id_success() throws Exception {
-//        sqlSession = sqlSessionFactory.openSession();
-//        SectionMapper sectionMapper = sqlSession.getMapper(SectionMapper.class);
 
         Integer id = sectionMapper.selectIdByPaperId(1);
         assertThat(id, is(1));
-//        sqlSession.close();
-
     }
 
 
     @Test
     public void should_inserted_section() throws Exception {
-//        SqlSession sqlSession = sqlSessionFactory.openSession();
 
 
         Section section = new Section();
@@ -61,26 +55,23 @@ public class SectionMapperTest {
         sectionMapper.insertSection(section);
         assertThat(section.getPaperId(), is(4));
         assertThat(section.getType(), is("logicPuzzle"));
-//        sqlSession.close();
 
     }
 
-//    @Test
-//    public void should_update_section()throws Exception{
-//
-//        Section section=new Section();
-//        section.setType("logicPuzzle");
-//        section.setPaperId(4);
-//        sectionMapper.updateSectionByPaperId(section);
-//        assertThat(section.getPaperId(),is(4));
-//        assertThat(section.getType(),is("logicPuzzle"));
-//    }
+    @Test
+    public void should_update_section()throws Exception{
+
+        Section section=new Section();
+        section.setType("logicPuzzle");
+        section.setPaperId(4);
+        sectionMapper.updateSectionByPaperId(section);
+        assertThat(section.getPaperId(),is(4));
+        assertThat(section.getType(),is("logicPuzzle"));
+    }
 
 
     @Test
     public void should_delete_section() throws Exception {
-//        SqlSession sqlSession = sqlSessionFactory.openSession();
-//        SectionMapper sectionMapper = sqlSession.getMapper(SectionMapper.class);
 
         Integer id = sectionMapper.deleteSectionByPaperId(3);
         assertThat(id, is(0));
