@@ -1,6 +1,7 @@
 //package com.tw.rs.mapper;
 //
 //import org.apache.ibatis.io.Resources;
+//import org.apache.ibatis.jdbc.ScriptRunner;
 //import org.apache.ibatis.session.SqlSession;
 //import org.apache.ibatis.session.SqlSessionFactory;
 //import org.apache.ibatis.session.SqlSessionFactoryBuilder;
@@ -15,6 +16,7 @@
 //import org.junit.BeforeClass;
 //
 //import java.io.Reader;
+//import java.sql.Connection;
 //
 //public class TestBase {
 //    private static SqlSessionFactory sqlSessionFactory;
@@ -24,18 +26,16 @@
 //        Reader reader = Resources.getResourceAsReader("./mybatis/mybatis-config.xml");
 //        sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
 //        reader.close();
-////      return sqlSessionFactory;
 //
-//        // populate in-memory database
-////        SqlSession session = sqlSessionFactory.openSession();
-////        Connection conn = session.getConnection();
-////        reader = Resources.getResourceAsReader("./database/paper_initial.sql");
-////        ScriptRunner runner = new ScriptRunner(conn);
-////        runner.setLogWriter(null);
-////        runner.runScript(reader);
-////        conn.close();
-////        reader.close();
-////        session.close();
+//        SqlSession session = sqlSessionFactory.openSession();
+//        Connection conn = session.getConnection();
+//        reader = Resources.getResourceAsReader("./database/paper_initial.sql");
+//        ScriptRunner runner = new ScriptRunner(conn);
+//        runner.setLogWriter(null);
+//        runner.runScript(reader);
+//        conn.close();
+//        reader.close();
+//        session.close();
 //    }
 //}
 //
